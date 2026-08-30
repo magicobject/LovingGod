@@ -90,13 +90,13 @@ blockquote.pullquote cite{color:var(--violet-dark);font-weight:700;font-size:.85
 footer{background:var(--slate);color:#cbd5e1;padding:44px 0 0;}
 footer .wrap{display:grid;grid-template-columns:2fr 1fr;gap:32px;padding-bottom:32px;}
 @media (max-width:600px){footer .wrap{grid-template-columns:1fr;}}
-footer h4{color:var(--white);font-family:var(--font-head);margin:0 0 10px;font-size:1rem;}
+footer .foot-heading{color:var(--white);font-family:var(--font-head);margin:0 0 10px;font-size:1rem;}
 footer ul{list-style:none;margin:0;padding:0;}
 footer li{margin-bottom:8px;}
 footer a{color:#cbd5e1;text-decoration:none;}
 footer a:hover{color:var(--white);}
 footer .legal{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(255,255,255,.12);padding:16px 24px;font-size:.82rem;color:#8b93a7;}
-footer .build-number{opacity:.7;}
+footer .legal a{text-decoration:underline;}
 
 /* 404 */
 .not-found{padding:90px 0;text-align:center;}

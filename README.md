@@ -50,9 +50,20 @@ The footer shows a build number (`Build yyyy.mm.dd.NNN`, `NNN` = commits made th
 - Background photos per chapter are still hotlinked from Unsplash (same images as the original site, at lower resolution/quality since they're now all loaded on one page rather than one at a time). Worth revisiting to self-host if that ever becomes a reliability concern.
 - The `href="/LovingGod.pdf"` and Amazon buy links (`mybook.to/lovinggod`) are carried over unchanged.
 
+## Accessibility
+
+Every page is scanned with [axe-core](https://github.com/dequelabs/axe-core) (via `@axe-core/playwright`) in [test/accessibility.spec.ts](test/accessibility.spec.ts) — part of `npm test`, so a real regression fails the suite, not just a one-off manual check.
+
+Fixes that came out of the last full pass:
+
+- **No page had a `<main>` landmark at all.** `templates/page.html` wrapped `{{HEADER}}`/`{{CONTENT}}`/`{{FOOTER}}` with no landmark around the actual content, so the hero, every chapter section, and the 404 message were all flagged as not contained by any landmark. Fixed once, at the template level, by wrapping `{{CONTENT}}` in `<main>`.
+- **Footer heading levels.** "Loving God" / "Get the book" were real `<h4>`s, skipping straight from the last real heading (an `<h2>` chapter title). They're group labels, not part of the content outline, so they're `<p class="foot-heading">` now — identical styling, no heading semantics.
+- **The "mediawright.uk" credit link relied on color alone.** Sitting inline in the copyright sentence, its color-only contrast against the surrounding text was only 2.07:1 (needs 3:1) with no underline to distinguish it another way. Underlined it.
+- **One real color-contrast failure:** the footer build-number text used `opacity: 0.7` on top of already-muted footer text, dropping it to 3.5:1 (needs 4.5:1). Dropped the opacity — the underlying color alone already clears 5.8:1.
+
 ## Tests
 
-Playwright specs cover the footer build-number format, 404 handling, and — the main regression guard for why this rebuild happened — that all 17 chapter headings are actually present in the page source, not just the visible one.
+Playwright specs cover the footer build-number format, 404 handling, an axe-core scan of every page with zero tolerated violations (see "Accessibility" above), and — the main regression guard for why this rebuild happened — that all 17 chapter headings are actually present in the page source, not just the visible one.
 
 ## Deployment
 
