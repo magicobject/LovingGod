@@ -16,6 +16,13 @@ export const PAGES = [
     cta: { href: 'https://mybook.to/lovinggod', text: 'Buy on Amazon' },
   },
   {
+    slug: 'updates',
+    title: 'Site Updates | Loving God',
+    description: 'Internal build changelog for lovinggod.uk — not linked from anywhere on the site.',
+    active: null,
+    robots: 'noindex',
+  },
+  {
     slug: '404',
     title: 'Page Not Found | Loving God',
     description: "This page couldn't be found. Find your way back to the Loving God book.",

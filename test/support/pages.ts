@@ -15,4 +15,9 @@ export const PAGES: SitePage[] = [
     titleContains: 'How to Love the Lord Your God',
     heading: /How to Love the Lord Your God/i,
   },
+  {
+    path: '/updates.html',
+    titleContains: 'Site Updates',
+    heading: /site updates/i,
+  },
 ];

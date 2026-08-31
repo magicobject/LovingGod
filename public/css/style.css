@@ -68,6 +68,14 @@ img{max-width:100%;display:block;}
 .contents a{color:var(--ink);text-decoration:none;font-size:.95rem;}
 .contents a:hover{color:var(--violet);text-decoration:underline;}
 
+.changelog{list-style:none;margin:0;padding:0;max-width:70ch;}
+.changelog li{padding:16px 0;border-bottom:1px solid var(--line);}
+.changelog li:last-child{border-bottom:none;}
+.changelog-meta{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:4px;}
+.changelog-build{font-weight:700;color:var(--violet-dark);font-variant-numeric:tabular-nums;}
+.changelog-date{font-size:.85rem;color:var(--ink-soft);}
+.changelog p{margin:0;color:var(--ink-soft);}
+
 /* Chapters */
 .chapter{position:relative;padding:52px 0;overflow:hidden;}
 .chapter-alt{background:var(--paper-dim);}

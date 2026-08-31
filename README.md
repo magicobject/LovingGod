@@ -44,6 +44,12 @@ npm test          # run the Playwright suite
 
 The footer shows a build number (`Build yyyy.mm.dd.NNN`, `NNN` = commits made that day, stored in `build-number.json`), maintained automatically. `npm install` runs the `prepare` script, pointing git at the tracked [.githooks/pre-commit](.githooks/pre-commit) hook, which on every commit: bumps the build number, runs `npm run build`, and stages the result. You never do this by hand — just edit `src/`/`templates/` and commit normally.
 
+## Build tags and the /updates changelog
+
+Every commit gets a matching git tag, `build-<date>.<NNN>` (e.g. `build-2026.08.31.001`) — the same value as the footer's "Build ..." text for that commit, so any deployed build is checkoutable by name (`git checkout build-2026.08.31.001`) without digging through `git log`.
+
+[src/pages/updates.html](src/pages/updates.html) (served at `/updates.html`) is a hand-maintained changelog, one entry per build number, newest first — the human-readable counterpart to the git tags. It's a real page, built by the normal pipeline like any other, but it's deliberately not linked from anywhere on the site (there's no multi-page nav here at all — `NAV` is `[]`), and is `robots: noindex` — a build log for whoever knows the URL, not user-facing content.
+
 ## Content notes
 
 - Chapter text, verses, and structure are transcribed from the original `index.jsx` in the `lovethelord` repo — nothing paraphrased or invented.

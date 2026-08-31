@@ -23,8 +23,10 @@ test('every chapter section is present in the static HTML (not just the visible 
   expect(chapterHeadings).toContain('True Repentance');
 });
 
-test('the canonical URL matches the page', async ({ page }) => {
-  await page.goto('/index.html');
-  const canonical = page.locator('link[rel="canonical"]');
-  await expect(canonical).toHaveAttribute('href', 'https://lovinggod.uk/index.html');
+test('every page links to a canonical URL matching its own filename', async ({ page }) => {
+  for (const sitePage of PAGES) {
+    await page.goto(sitePage.path);
+    const canonical = page.locator('link[rel="canonical"]');
+    await expect(canonical).toHaveAttribute('href', `https://lovinggod.uk${sitePage.path}`);
+  }
 });
