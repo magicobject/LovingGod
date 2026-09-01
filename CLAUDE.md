@@ -4,7 +4,7 @@ These apply to every change here, not just when explicitly asked for.
 
 ## Before any push to origin
 - Run `npm test` (Playwright suite) and `npm audit --omit=dev`. Fix real findings — don't suppress, downgrade, or skip them to get a push out.
-- Whenever the whole suite (`npm test`) is run, report the number of tests run and the time taken (both are in Playwright's own summary line, e.g. "121 passed (15.2s)") — a quick way to notice a regression in either coverage or speed.
+- Whenever the whole suite (`npm test`) is run, report the number of tests run and the time taken, prefixed with this repo's name (e.g. "LovingGod: 13 tests passed in 6.0s") — the count and duration are in Playwright's own summary line, the name prefix makes it scannable when work spans multiple sites in one session — a quick way to notice a regression in either coverage or speed, in the right project.
 
 ## Accessibility
 - Every page must pass an axe-core scan (`@axe-core/playwright`, via `test/accessibility.spec.ts`) with zero violations. New pages need an entry in `test/support/pages.ts` — the accessibility spec picks them up automatically from there.
