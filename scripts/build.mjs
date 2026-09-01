@@ -35,9 +35,7 @@ const footerNavItems = NAV.map(
 
 const buildNumber = readBuildNumber();
 
-const footer = footerTemplate
-  .replace('{{FOOTER_NAV_ITEMS}}', footerNavItems)
-  .replace('{{BUILD_NUMBER}}', buildNumber);
+const footer = footerTemplate.replace('{{FOOTER_NAV_ITEMS}}', footerNavItems);
 
 for (const page of PAGES) {
   const cta = page.cta ?? { href: 'index.html', text: 'Home' };
@@ -59,10 +57,10 @@ for (const page of PAGES) {
     .replace('{{TITLE}}', page.title)
     .replace('{{DESCRIPTION}}', page.description)
     .replace('{{EXTRA_HEAD}}', extraHead)
-    .replace('{{BUILD_NUMBER}}', buildNumber)
     .replace('{{HEADER}}', header)
     .replace('{{CONTENT}}', content)
-    .replace('{{FOOTER}}', footer);
+    .replace('{{FOOTER}}', footer)
+    .replaceAll('{{BUILD_NUMBER}}', buildNumber);
 
   writeFileSync(join(root, 'public', `${page.slug}.html`), html);
   console.log(`built public/${page.slug}.html`);
